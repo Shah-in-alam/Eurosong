@@ -3,9 +3,9 @@ const express = require('express');
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
+const cors =require('cors');
 
-const indexRouter = require('./routes/index');
-const usersRouter = require('./routes/users');
+
 
 const app = express();
 
@@ -19,8 +19,18 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+//Routing 
+const indexRouter=require('./routes/index');
+const artistsRouter=require('./routes/artists');
+const songsRouter=require('./routes/songs');
+const rankingRouter=require('./routes/ranking');
+const votesRouter=require('./routes/votes')
+
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/artists',artistsRouter);
+app.use('/songs',songsRouter);
+app.use('/ranking',rankingRouter);
+app.use('/votes',votesRouter);
 
 // catch 404 and forward to error handler
 app.use((req, res, next) =>{
