@@ -9,6 +9,7 @@
     <pageHome v-if="activePage=='home'"></pageHome>
      <pageArtists v-if="activePage=='artists'"></pageArtists>
      <pageVoting v-if="activePage=='voting'"></pageVoting>
+     <pageSongs v-if="activePage=='songs'"></pageSongs>
      <pageRanking v-if="activePage=='ranking'"></pageRanking>
   </div>
 </template>
@@ -20,13 +21,14 @@ import NavigationComponent from './components/NavigationComponent.vue'
 import pageHome from './pages/pageHome.vue';
 import pageVoting from './pages/pageVoting.vue';
 import pageRanking from './pages/pageRanking.vue';
+import pageSongs from './pages/pageSongs.vue';
 import pageArtists from './pages/pageArtists.vue';
 
 export default {
   name: 'App',
   data(){
     return {
-      activePage:"home"
+      activePage:"voting"
     }
   },
   components: {
@@ -34,6 +36,7 @@ export default {
    pageArtists,
    pageHome,
    pageRanking,
+   pageSongs,
    pageVoting
    },
    methods:{

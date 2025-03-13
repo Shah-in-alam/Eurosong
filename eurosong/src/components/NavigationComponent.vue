@@ -1,8 +1,12 @@
 <template>
 <nav>
       <ul>
-        <li
-        v-for="item in items" :key="item"  @click="setActivePage(item)">
+        <li 
+            v-for="(item, index) in items" 
+            :key="index" 
+            class="c-navigation__link"
+            @click="setActivePage(item)"
+        >
           {{ item }}
         </li>
         
@@ -18,6 +22,7 @@ export default{
                 "home",
                 "artists",
                 "ranking",
+                "Songs",
                 "voting"
             ]
         }

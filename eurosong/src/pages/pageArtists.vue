@@ -6,7 +6,7 @@
         <tr>
           <th>Artist ID</th>
           <th>Artist Name</th>
-          <th>Song</th>
+          <!-- <th>Song</th> -->
         </tr>
       </thead>
       <tbody>
@@ -17,31 +17,63 @@
         </tr>
       </tbody>
     </table>
+    <hr>
+    <label for="input_new_name">
+      New name
+    </label>
+    <input id="input_new_name" type="text" v-model="newArtists">
+    <button @click="addArtists()">
+      Add new artisits
+    </button>
     </div>
     
     </template>
     
     <script>
-    export default{
-        name: "pageArtists",
-        mounted(){
-            // console.log("get the data from the api.")
-            fetch("http://localhost:3000/artists")
-            .then((response)=>
-                response.json())
-                .then((data)=>{
-                  this.artists =data;
-                })
-                .catch((error) =>console.error("Error featchig data:",error));
-            
+    export default {
+        name: "PageArtists",
+        mounted() {
+            this.fetchArtists();
         },
-        data(){
+        data() {
             return {
-                artists:[], 
-            };
-          }
+                artists: [],
+                newArtist: ""
+            }
+        },
+        methods: {
+            fetchArtists() {
+                fetch("http://localhost:3000/artists", {
+                    method: "GET"
+                })
+                    .then((data) => {
+                        return data.json();
+                    })
+                    .then((artistsApi) => {
+                        this.artists = artistsApi;
+                    })
+            },
+            addArtists() {
+                fetch("http://localhost:3000/artists", {
+                    method: "POST",
+                    headers: {
+                        'Accept': 'application/json',
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        name: this.newArtist
+                    })
+                })
+                    .then((data) => {
+                        return data.json();
+                    })
+                    .then(() => {
+                        this.fetchArtists();
+                    })
+            }
         }
-    </script>
+    }
+</script>
     <style scoped>
  table{
      margin: 0 auto;
