@@ -7,7 +7,6 @@
        <button @click="prevSong()">
         prev
        </button>
-
        <button @click="nextSong()">
         next
        </button>
