@@ -11,28 +11,27 @@
         </ul>
     </div>
 </template>
+
 <script>
-export default {
-    name:"pageSongs",
-    data(){
-        return {
-            songs:[]
-        }
-    },
-    mounted(){
-        this.getSongs();
-    },
-    methods:{
-        getSongs(){
-            fetch("https://localhost:3000/songs",{
-                method:"GET"
-            })
-            .then((response)=>response.json())
-            .then((_songs)=>{
-                this.songs=_songs;
-                
-            })
+    export default {
+        name: "PageSongs",
+        data() {
+            return {
+                songs: []
+            }
+        },
+        mounted() {
+            this.getSongs();
+        },
+        methods: {
+            getSongs() {
+                fetch(" http://localhost:3000/songs", {
+                    method: "GET"
+                }).then((response) => response.json())
+                 .then((_songs) => {
+                        this.songs = _songs;
+                    });
+            }
         }
     }
-}
 </script>

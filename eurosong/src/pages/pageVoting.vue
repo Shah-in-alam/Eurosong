@@ -7,13 +7,15 @@
        <button @click="prevSong()">
         prev
        </button>
+
        <button @click="nextSong()">
         next
        </button>
     </div>
 </template>
-    <script>
-     export default {
+
+<script>
+    export default {
         name: "PageVoting",
         data() {
             return {
@@ -42,4 +44,4 @@
             },
         }
     }
-    </script>
+</script>
